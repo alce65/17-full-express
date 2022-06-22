@@ -1,4 +1,4 @@
-import { Connector } from '../bin/connector.js';
+import { DataModel } from './data.model.js';
 
 /* eslint-disable no-unused-vars */
 export interface iTask {
@@ -8,7 +8,7 @@ export interface iTask {
     isCompleted: boolean;
 }
 
-export class Task extends Connector<iTask> implements iTask {
+export class Task extends DataModel<iTask> implements iTask {
     id: number;
     constructor(
         public title: string = '',

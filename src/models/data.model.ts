@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import fs from 'fs/promises';
 
-export class Connector<T extends { id: number }> {
+export class DataModel<T extends { id: number }> {
     data: Array<T>;
     path: string;
     constructor(private fileName: string) {
