@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import fs from 'fs/promises';
-import { iTask } from '../models/task.model';
 
 export class Connector<T extends { id: number }> {
     data: Array<T>;
