@@ -16,9 +16,6 @@ describe('Given a instantiated controller DataController', () => {
             status: jest.fn(),
             end: jest.fn(),
         };
-        // const dataModel: Partial<DataModel> = {
-        //     find: jest.fn(),
-        // };
         dataModel = new DataModel('test-db');
         dataController = new DataController(dataModel);
     });
@@ -54,10 +51,40 @@ describe('Given a instantiated controller DataController', () => {
             expect(resp.status).toHaveBeenCalledWith(404);
         });
     });
-});
 
-// describe('Given a instantiated controller DataController', () => {
-//     describe('When method ... is called', () => {
-//         test('Then it should ...', () => {});
-//     });
-// });
+    describe('When method postController is called', () => {
+        test('Then resp.end should be called with data', async () => {
+            const result = { test: 'test' };
+            dataModel.create = jest.fn().mockResolvedValue(result);
+            await dataController.postController(
+                req as Request,
+                resp as Response
+            );
+            expect(resp.end).toHaveBeenCalledWith(JSON.stringify(result));
+        });
+    });
+
+    describe('When method patchController is called', () => {
+        test('Then resp.end should be called with data', async () => {
+            const result = { test: 'test' };
+            dataModel.update = jest.fn().mockResolvedValue(result);
+            await dataController.patchController(
+                req as Request,
+                resp as Response
+            );
+            expect(resp.end).toHaveBeenCalledWith(JSON.stringify(result));
+        });
+    });
+
+    describe('When method deleteController is called', () => {
+        test('Then res.status should be called with status', async () => {
+            const result = { status: 202 };
+            dataModel.delete = jest.fn().mockResolvedValue(result);
+            await dataController.deleteController(
+                req as Request,
+                resp as Response
+            );
+            expect(resp.status).toHaveBeenCalledWith(202);
+        });
+    });
+});
