@@ -27,6 +27,7 @@ export class Notes extends DataModel<iNotes> implements iNotes {
             'notes'
         );
         const cursor = collection.find();
+        console.log({ cursor });
         const result = await (cursor.toArray() as unknown as Promise<
             Array<iNotes>
         >);

@@ -39,7 +39,7 @@ describe('Given a instantiated model DataModel', () => {
     describe('When method update is called', () => {
         test('Then an item should be updated', async () => {
             const updatedPartial = { test: 'newTest' };
-            const result = await model.update(1, updatedPartial);
+            const result = await model.update('1', updatedPartial);
             expect(fs.writeFile).toHaveBeenCalled();
             expect(result.test).toBe(updatedPartial.test);
         });
@@ -47,14 +47,14 @@ describe('Given a instantiated model DataModel', () => {
 
     describe('When method delete is called with a valid id', () => {
         test('Then an item should be  deleted', async () => {
-            const result = await model.delete(1);
+            const result = await model.delete('1');
             expect(result.status).toBe(202);
         });
     });
 
     describe('When method delete is called with a not valid id', () => {
         test('Then an item should not be  deleted', async () => {
-            const result = await model.delete(4);
+            const result = await model.delete('4');
             expect(result.status).toBe(404);
         });
     });
