@@ -13,7 +13,8 @@ export class DataController {
 
     getController = async (req: Request, resp: Response) => {
         resp.setHeader('Content-type', 'application/json');
-        const result = await this.model.find(+req.params.id);
+        console.log(req.params.id);
+        const result = await this.model.find(req.params.id);
         if (result) {
             resp.end(JSON.stringify(result));
         } else {
@@ -30,13 +31,13 @@ export class DataController {
     };
 
     patchController = async (req: Request, resp: Response) => {
-        const newTask = await this.model.update(+req.params.id, req.body);
+        const newTask = await this.model.update(req.params.id, req.body);
         resp.setHeader('Content-type', 'application/json');
         resp.end(JSON.stringify(newTask));
     };
 
     deleteController = async (req: Request, resp: Response) => {
-        const { status } = await this.model.delete(+req.params.id);
+        const { status } = await this.model.delete(req.params.id);
         resp.status(status);
         resp.end(JSON.stringify({}));
     };

@@ -22,7 +22,7 @@ describe('Given a instantiated model DataModel', () => {
 
     describe('When method find is called', () => {
         test('Then an item should be found', async () => {
-            const result = await model.find(1);
+            const result = await model.find('1');
             expect(fs.readFile).toHaveBeenCalled();
             expect(result).toStrictEqual(mockItem);
         });

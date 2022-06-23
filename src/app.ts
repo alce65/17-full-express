@@ -4,6 +4,7 @@ import morgan from 'morgan';
 
 import homeRouter from './router/home.js';
 import { taskRouter } from './router/task.js';
+import { notesRouter } from './router/notes.js';
 
 export const app = express();
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 
 app.use('/', homeRouter);
 app.use('/task', taskRouter);
+app.use('/notes', notesRouter);
 
 app.use((error: Error, req: Request, resp: Response, next: NextFunction) => {
     req;
