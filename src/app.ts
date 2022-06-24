@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 // import path from 'path'
 
 import homeRouter from './router/home.js';
@@ -12,6 +13,7 @@ export const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cors());
 
 export interface ExtraRequest extends Request {
     calculo: number;
